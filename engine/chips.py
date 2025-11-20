@@ -1,6 +1,6 @@
 class Chips:
 
-    def __init__(self, total=100):
+    def __init__(self, total):
         self.total = total
 
     def bet(self, amount):
