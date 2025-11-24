@@ -1,3 +1,6 @@
+from hand import Hand
+
+
 class Dealer:
 
     def __init__(self):
@@ -5,4 +8,4 @@ class Dealer:
         self.hand = Hand()
 
     def play_turn():
-        pass #to be edited
+        pass  # to be edited
