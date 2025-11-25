@@ -12,4 +12,4 @@ class Chips:
         return amount * 2
 
     def can_bet(self, amount):
-        return amount >= self.total
+        return amount <= self.total
