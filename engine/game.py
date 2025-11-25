@@ -77,3 +77,18 @@ class Game:
                 print("Answer not valid. Retry\n")
             else:
                 return player_input
+
+    def player_turn(self):
+
+        while True:
+            self.clear_screen()
+            self.display_hands(True)
+            hit_or_stand = self.hit_or_stand()
+
+            if hit_or_stand == "h":
+                self.player.hand.add_card(self.deck.deal_card())
+                if self.player.hand.bust:
+                    break
+
+            if hit_or_stand == "s":
+                break
