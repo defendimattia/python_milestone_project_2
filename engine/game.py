@@ -160,3 +160,22 @@ class Game:
 
         result = self.resolve_round()
         print(result)
+
+    def play_game(self):
+        self.show_welcome_message()
+
+        while True:
+            self.play_round()
+
+            while True:
+                keep_going = input("Wanna play another round? (y/n): ")
+
+                if keep_going.lower() == "y":
+                    self.clear_screen()
+                    break
+
+                elif keep_going.lower() == "n":
+                    return "Thank you for playing!"
+
+                else:
+                    print("Answer not valid. Retry.\n")
