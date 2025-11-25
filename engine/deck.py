@@ -6,6 +6,7 @@ class Deck:
 
     def __init__(self):
         self.all_cards = [Card(suit, rank) for suit in suits for rank in ranks]
+        self.shuffle_deck()
 
     def shuffle_deck(self):
         shuffle(self.all_cards)
