@@ -79,6 +79,7 @@ class Game:
                 return player_input
 
     def player_turn(self):
+        print("Player's turn...")
 
         while True:
             self.clear_screen()
@@ -92,3 +93,17 @@ class Game:
 
             if hit_or_stand == "s":
                 break
+
+    def dealer_turn(self):
+        print("Dealer's turn...")
+
+        dealer_value = self.dealer.play_turn(self.deck)
+
+        self.display_hands()
+
+        if self.dealer.hand.has_blackjack():
+            print("Dealer has Blackjack!")
+        elif self.dealer.hand.bust:
+            print("Dealer busts!")
+
+        return dealer_value
