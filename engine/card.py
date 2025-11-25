@@ -23,11 +23,11 @@ values = {
     "Seven": 7,
     "Eight": 8,
     "Nine": 9,
-    "Ten": 11,
-    "Jack": 11,
-    "Queen": 12,
-    "King": 13,
-    "Ace": 14,
+    "Ten": 10,
+    "Jack": 10,
+    "Queen": 10,
+    "King": 10,
+    "Ace": 11,
 }
 
 
