@@ -24,7 +24,7 @@ class Game:
         print("- Dealer hits until reaching at least 17")
         print("- You can choose your bet each round")
 
-    def start_game(self):
+    def deal_initial_cards(self):
         self.player.hand.add_card(self.deck.deal_card(2))
         self.dealer.hand.add_card(self.deck.deal_card(2))
 
@@ -136,3 +136,27 @@ class Game:
 
         if self.player.hand.value == self.dealer.hand.value:
             print("Tie! No one won!")
+
+    def reset_round(self):
+        self.player.hand.reset()
+        self.dealer.hand.reset()
+        self.current_bet = None
+        if self.deck.needs_reset():
+            self.deck.reset()
+
+    def play_round(self):
+        self.reset_round()
+
+        self.place_bet()
+
+        self.deal_initial_cards()
+
+        self.display_hands(initial_hand=True)
+
+        self.player_turn()
+
+        if not self.player.hand.bust:
+            self.dealer_turn()
+
+        result = self.resolve_round()
+        print(result)
