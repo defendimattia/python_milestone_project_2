@@ -101,9 +101,38 @@ class Game:
 
         self.display_hands()
 
-        if self.dealer.hand.has_blackjack():
-            print("Dealer has Blackjack!")
-        elif self.dealer.hand.bust:
-            print("Dealer busts!")
-
         return dealer_value
+
+    def resolve_round(self):
+
+        if self.player.hand.has_blackjack():
+            print("B L A C K J A C K !")
+            print("Player WINS!")
+            self.player.chips.win(self.current_bet)
+            return f"Player won ${self.current_bet * 2}"
+
+        if self.dealer.hand.has_blackjack():
+            print("B L A C K J A C K !")
+            print("Dealer WINS!")
+            return None
+
+        if self.player.hand.bust:
+            print("Player busts! Dealer wins!")
+            return "Dealer WINS!"
+
+        if self.dealer.hand.bust:
+            print("Dealer busts! Player wins!")
+            self.player.chips.win(self.current_bet)
+            return f"Player won ${self.current_bet * 2}"
+
+        if self.player.hand.value > self.dealer.hand.value:
+            self.player.chips.win(self.current_bet)
+            print("Player WINS!")
+            return f"Player won ${self.current_bet * 2}"
+
+        if self.dealer.hand.value > self.player.hand.value:
+            print("Dealer WINS!")
+            return "Dealer WINS!"
+
+        if self.player.hand.value == self.dealer.hand.value:
+            print("Tie! No one won!")
