@@ -52,3 +52,17 @@ class Game:
 
             except ValueError:
                 print("This is not a valid number. Retry.\n")
+
+    def display_hands(self, initial_hand=False):
+
+        player_cards = ", ".join(str(card) for card in self.player.hand.cards)
+        print(f"Player hand: {player_cards} (Value: {self.player.hand.value})")
+
+        if initial_hand:
+
+            if self.dealer.hand.cards:
+                print(f"Dealer hand: {self.dealer.hand.cards[0]}, [Hidden Card]")
+
+        else:
+            dealer_cards = ", ".join(str(card) for card in self.dealer.hand.cards)
+            print(f"Dealer hand: {dealer_cards} (Value: {self.dealer.hand.value})")
