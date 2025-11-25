@@ -66,3 +66,14 @@ class Game:
         else:
             dealer_cards = ", ".join(str(card) for card in self.dealer.hand.cards)
             print(f"Dealer hand: {dealer_cards} (Value: {self.dealer.hand.value})")
+
+    def hit_or_stand(self):
+
+        while True:
+
+            player_input = input("Hit or Stand? (h/s)")
+
+            if player_input.lower() not in ("h", "s"):
+                print("Answer not valid. Retry\n")
+            else:
+                return player_input
