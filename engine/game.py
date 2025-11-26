@@ -55,16 +55,16 @@ class Game:
 
     def display_hands(self, initial_hand=False):
 
-        player_cards = ", ".join(str(card) for card in self.player.hand.cards)
+        player_cards = " ".join(str(card) for card in self.player.hand.cards)
         print(f"Player hand: {player_cards} (Value: {self.player.hand.value})")
 
         if initial_hand:
 
             if self.dealer.hand.cards:
-                print(f"Dealer hand: {self.dealer.hand.cards[0]}, [Hidden Card]")
+                print(f"Dealer hand: {self.dealer.hand.cards[0]}")
 
         else:
-            dealer_cards = ", ".join(str(card) for card in self.dealer.hand.cards)
+            dealer_cards = " ".join(str(card) for card in self.dealer.hand.cards)
             print(f"Dealer hand: {dealer_cards} (Value: {self.dealer.hand.value})")
 
     def hit_or_stand(self):
@@ -79,10 +79,10 @@ class Game:
                 return player_input
 
     def player_turn(self):
-        print("Player's turn...")
 
         while True:
             self.clear_screen()
+            print("Player's turn...")
             self.display_hands(True)
             hit_or_stand = self.hit_or_stand()
 
@@ -95,6 +95,7 @@ class Game:
                 break
 
     def dealer_turn(self):
+        self.clear_screen()
         print("Dealer's turn...")
 
         dealer_value = self.dealer.play_turn(self.deck)
@@ -106,22 +107,27 @@ class Game:
     def resolve_round(self):
 
         if self.player.hand.has_blackjack():
+            self.clear_screen()
+            self.display_hands()
             print("B L A C K J A C K !")
-            print("Player WINS!")
             self.player.chips.win(self.current_bet)
             return f"Player won ${self.current_bet * 2}"
 
         if self.dealer.hand.has_blackjack():
+            self.clear_screen()
+            self.display_hands()
             print("B L A C K J A C K !")
-            print("Dealer WINS!")
-            return None
 
         if self.player.hand.bust:
-            print("Player busts! Dealer wins!")
+            self.clear_screen()
+            self.display_hands()
+            print("Player busts!")
             return "Dealer WINS!"
 
         if self.dealer.hand.bust:
-            print("Dealer busts! Player wins!")
+            self.clear_screen()
+            self.display_hands()
+            print("Dealer busts!")
             self.player.chips.win(self.current_bet)
             return f"Player won ${self.current_bet * 2}"
 
@@ -131,10 +137,10 @@ class Game:
             return f"Player won ${self.current_bet * 2}"
 
         if self.dealer.hand.value > self.player.hand.value:
-            print("Dealer WINS!")
             return "Dealer WINS!"
 
         if self.player.hand.value == self.dealer.hand.value:
+            self.player.chips.win(self.current_bet / 2)
             print("Tie! No one won!")
 
     def reset_round(self):
