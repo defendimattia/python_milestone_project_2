@@ -1,4 +1,4 @@
-from card import Card, suits, ranks
+from engine.card import Card, suits, ranks
 from random import shuffle
 
 

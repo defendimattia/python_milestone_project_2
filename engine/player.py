@@ -1,5 +1,5 @@
-from chips import Chips
-from hand import Hand
+from engine.chips import Chips
+from engine.hand import Hand
 
 
 class Player:

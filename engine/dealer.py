@@ -1,4 +1,4 @@
-from hand import Hand
+from engine.hand import Hand
 
 
 class Dealer:
