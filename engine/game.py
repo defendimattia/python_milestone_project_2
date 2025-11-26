@@ -55,9 +55,12 @@ class Game:
 
     def display_hands(self, initial_hand=False):
 
-        player_cards = " ".join(str(card) for card in self.player.hand.cards)
         self.player.hand.adjust_for_aces()
-        print(f"Player hand: {player_cards} (Value: {self.player.hand.value})")
+        print(
+            "Player hand:",
+            *self.player.hand.cards,
+            f"(Value: {self.player.hand.value})",
+        )
 
         if initial_hand:
 
@@ -65,8 +68,12 @@ class Game:
                 print(f"Dealer hand: {self.dealer.hand.cards[0]}")
 
         else:
-            dealer_cards = " ".join(str(card) for card in self.dealer.hand.cards)
-            print(f"Dealer hand: {dealer_cards} (Value: {self.dealer.hand.value})")
+            self.dealer.hand.adjust_for_aces()
+            print(
+                "Dealer hand:",
+                *self.dealer.hand.cards,
+                f"(Value: {self.dealer.hand.value})",
+            )
 
     def hit_or_stand(self):
 
