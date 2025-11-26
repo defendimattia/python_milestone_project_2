@@ -29,7 +29,7 @@ class Game:
         self.dealer.hand.add_card(self.deck.deal_card(2))
 
     def place_bet(self):
-        print(f"Your current balance is: ${self.player.chips.total}")
+        print(f"Your current balance is: ${int(self.player.chips.total)}")
 
         while True:
             current_bet = input("Place your bet: ")
@@ -56,6 +56,7 @@ class Game:
     def display_hands(self, initial_hand=False):
 
         player_cards = " ".join(str(card) for card in self.player.hand.cards)
+        self.player.hand.adjust_for_aces()
         print(f"Player hand: {player_cards} (Value: {self.player.hand.value})")
 
         if initial_hand:
